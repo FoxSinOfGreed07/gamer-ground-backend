@@ -81,6 +81,7 @@ function getGameDetailsById(req, res, next) {
     console.log(ob)
 
     var resp = ({
+      "name":ob.name,
       "rating":ob.rating,
       "image":ob.background_image,
       "description":ob.description_raw.split('.')[0] + ob.description_raw.split('.')[1],
