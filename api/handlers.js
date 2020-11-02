@@ -84,11 +84,13 @@ function getGameDetailsById(req, res, next) {
       "name":ob.name,
       "rating":ob.rating,
       "image":ob.background_image,
-      "description":ob.description_raw.split('.')[0] + ob.description_raw.split('.')[1],
+      "description":ob.description_raw.split('.')[0] + ob.description_raw.split('.')[1] + ob.description_raw.split('.')[2],
       "requirements": ob.platforms[0].requirements,
       "stores": ob.stores,
       "link": ob.website
     })
+
+    console.log(ob.platforms[0].requirements)
 
     res.send(resp)
 
