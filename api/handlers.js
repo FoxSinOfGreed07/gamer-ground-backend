@@ -78,10 +78,11 @@ function getGameDetailsById(req, res, next) {
     if (error) throw new Error(error)
 
     var ob = JSON.parse(body)
-    // console.log(ob)
+    console.log(ob)
 
     var resp = ({
       "rating":ob.rating,
+      "image":ob.background_image,
       "description":ob.description_raw.split('.')[0] + ob.description_raw.split('.')[1],
       "requirements": ob.platforms[0].requirements,
       "stores": ob.stores,
