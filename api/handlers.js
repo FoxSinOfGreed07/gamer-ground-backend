@@ -107,7 +107,8 @@ function storeGame(req, res, next) {
     _id: new Mongoose.Types.ObjectId(),
     rating: req.body.rating,
     name: req.body.name.toUpperCase(),
-    description: req.body.description
+    description: req.body.description,
+    image: req.body.image
   })
 
   game.save((err, user) => {
