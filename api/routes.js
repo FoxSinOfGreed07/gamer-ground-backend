@@ -1,7 +1,7 @@
 const expresss = require('express');
 const router = expresss.Router();
 
-const [getGames,addComment,getAllComments,getCommentByGameName, getGameDetailsById, storeGame, getStoredGame] = require('./handlers')
+const [getGames,addComment,getAllComments,getCommentByGameName, getGameDetailsById, storeGame, getStoredGames] = require('./handlers')
 
 router.route('/getGames').get(getGames)
 
@@ -15,7 +15,7 @@ router.route('/getGameDetailsById').post(getGameDetailsById)
 
 router.route('/storeGame').post(storeGame)
 
-router.route('/getStoredGame').post(getStoredGame)
+router.route('/getStoredGames').get(getStoredGames)
 
 
 

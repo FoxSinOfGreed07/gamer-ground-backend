@@ -117,9 +117,9 @@ function storeGame(req, res, next) {
 
 }
 
-function getStoredGame(req, res, next) {
+function getStoredGames(req, res, next) {
 
-  Game.find({ name: req.body.name.toUpperCase() }, (err, user) => {
+  Game.find({ }, (err, user) => {
     if (err) next(err)
     else res.send(user)
   })
@@ -128,5 +128,5 @@ function getStoredGame(req, res, next) {
 
 
 module.exports = [
-  getGames, addComment, getAllComments, getCommentByGameName, getGameDetailsById, storeGame, getStoredGame
+  getGames, addComment, getAllComments, getCommentByGameName, getGameDetailsById, storeGame, getStoredGames
 ]
