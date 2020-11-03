@@ -1,5 +1,7 @@
 var request = require("request")
 const User = require("../models/forum-user").User
+const Game = require("../models/game").Game
+
 const Mongoose = require('mongoose')
 
 
@@ -66,7 +68,7 @@ function getGameDetailsById(req, res, next) {
 
   const options = {
     method: 'GET',
-    url: 'https://rapidapi.p.rapidapi.com/games/'+req.body.id,
+    url: 'https://rapidapi.p.rapidapi.com/games/' + req.body.id,
     headers: {
       'x-rapidapi-key': '1253607fb3mshdbde93c187c0d21p18caa6jsnb04a488a9d9f',
       'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
@@ -81,10 +83,10 @@ function getGameDetailsById(req, res, next) {
     console.log(ob)
 
     var resp = ({
-      "name":ob.name,
-      "rating":ob.rating,
-      "image":ob.background_image,
-      "description":ob.description_raw.split('.')[0] + ob.description_raw.split('.')[1] + ob.description_raw.split('.')[2],
+      "name": ob.name,
+      "rating": ob.rating,
+      "image": ob.background_image,
+      "description": ob.description_raw.split('.')[0] + ob.description_raw.split('.')[1] + ob.description_raw.split('.')[2],
       "requirements": [ob.platforms[0].requirements],
       "stores": ob.stores,
       "link": ob.website
@@ -99,6 +101,32 @@ function getGameDetailsById(req, res, next) {
 
 }
 
+function storeGame(req, res, next) {
+
+  var game = new Game({
+    _id: new Mongoose.Types.ObjectId(),
+    rating: req.body.rating,
+    name: req.body.name.toUpperCase(),
+    description: req.body.description
+  })
+
+  game.save((err, user) => {
+    if (err) next(err)
+    else res.send(user)
+  })
+
+}
+
+function getStoredGame(req, res, next) {
+
+  Game.find({ name: req.body.name.toUpperCase() }, (err, user) => {
+    if (err) next(err)
+    else res.send(user)
+  })
+
+}
+
+
 module.exports = [
-  getGames, addComment, getAllComments, getCommentByGameName, getGameDetailsById
+  getGames, addComment, getAllComments, getCommentByGameName, getGameDetailsById, storeGame, getStoredGame
 ]

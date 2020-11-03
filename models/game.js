@@ -1,24 +1,24 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const GameSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    rating: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true
     },
-    game: {
-        type: String,
-        required: true
-    },
-    comment:{
+    description: {
         type: String,
         required: true
     }
 })
 
-const User = mongoose.model("users", UserSchema)
+const Game = mongoose.model("games", GameSchema)
 
 module.exports = {
-  User
+  Game
 }
