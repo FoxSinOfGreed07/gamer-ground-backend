@@ -104,7 +104,7 @@ function getGameDetailsById(req, res, next) {
 function storeGame(req, res, next) {
 
   var game = new Game({
-    _id: new Mongoose.Types.ObjectId(),
+    id: req.body.id,
     rating: req.body.rating,
     name: req.body.name.toUpperCase(),
     description: req.body.description,
